@@ -9,11 +9,11 @@ public class SpawnPointScript : MonoBehaviour {
 
     private float spawnCooldown;
 
-    private Transform spawnPoint;
+    public Transform spawnPoint;
 
     // Use this for initialization
     void Start () {
-        spawnPoint = GameObject.Find("SpawnPoint").transform;
+        //spawnPoint = GameObject.Find("SpawnPoint").transform;
         spawnCooldown = 0f;
 	}
 	
@@ -33,11 +33,11 @@ public class SpawnPointScript : MonoBehaviour {
 
             // Create a new enemy
             //var enemyTransform = Instantiate(enemyPrefab) as Transform;
-            GameObject enemyObj = (GameObject)Instantiate(Resources.Load("poulpi"));
+            Transform enemy = (Transform)Instantiate(enemyPrefab);
 
             // Assign position
             float yMax = Camera.main.orthographicSize - 0.5f;
-            enemyObj.transform.position = new Vector3(spawnPoint.position.x, Random.Range(-yMax, yMax), spawnPoint.position.z);
+            enemy.position = new Vector3(spawnPoint.position.x, Random.Range(-yMax, yMax), 0);
         }
     }
 
